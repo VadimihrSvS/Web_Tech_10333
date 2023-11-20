@@ -1,44 +1,67 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AspNet_Projects</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free-6.4.2-web/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AspNet_Projects.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNet_Projects</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+                <a href="#" class="navbar-brand">WebLabsV2</a>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Лб2</a>
+                    <a class="nav-item nav-link" asp-controller="Product" asp-action="Index">Каталог</a>
+                    <a class="nav-item nav-link" asp-area="Admin" asp-page="/Index">Администрирование</a>
+                </div>
+                <a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
+                    00,0 руб <i class="fas fa-shopping-cart nav-color">(0)</i>
+                </a>
+                <div class="dropdown ml-4 nav-color">
+                    <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item-text">
+                            <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
+                            user@mail.ru
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <li><a asp-controller="Cart" asp-action="Index" class="dropdown-item">Мои товары</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Logout" class="dropdown-item">Log off</a></li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main class="container">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
+    <footer class="fixed-bottom">
         <div class="container">
-            &copy; 2023 - AspNet_Projects - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="navbar navbar-dark navbar-expand-md bg-dark">
+                <div class="navbar-nav ms-auto">
+                    <a href="http://www.facebook.com" class="nav-item nav-link">
+                        <i class="fab fa-facebook-f fa-2x"></i>
+                    </a>
+                    <a href="http://www.vk.com" class="nav-item nav-link">
+                        <i class="fab fa-vk fa-2x"></i>
+                    </a>
+                    <a href="http://www.twitter.com" class="nav-item nav-link">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -46,4 +69,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

@@ -9,3 +9,17 @@ header, footer{
 a, a:hover{
   color:#343a40;
 }
+
+body{
+  overflow: scroll;
+  padding-bottom: 50px;
+}
+
+footer{
+  transform: translate(0px, 50px);
+  transition: 0.3s;
+}
+
+footer:hover{
+  transform: translate(0px, 0px);
+}
