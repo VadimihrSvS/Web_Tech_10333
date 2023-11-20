@@ -1,0 +1,11 @@
+header, footer{
+  background-color: #343a40;
+}
+
+.nav-color{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+a, a:hover{
+  color:#343a40;
+}
