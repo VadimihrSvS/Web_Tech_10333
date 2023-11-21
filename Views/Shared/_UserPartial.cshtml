@@ -1,15 +1,38 @@
-<div class="dropdown ml-4 nav-color">
-    <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
-        <div class="dropdown-item-text">
+@using Microsoft.AspNetCore.Identity;
+@using Lab_WT_Data.Entities;
+@inject SignInManager<ApplicationUser> signInManager
+
+@if (signInManager.IsSignedIn(User))
+{
+    <div class="dropdown ml-4 nav-color">
+        <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
-            user@mail.ru
-        </div>
-        <div class="dropdown-divider"></div>
-        <li><a asp-controller="Cart" asp-action="Index" class="dropdown-item">Мои товары</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Logout" class="dropdown-item">Log off</a></li>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item-text">
+                <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
+                @User.Identity.Name
+            </div>
+            <div class="dropdown-divider"></div>
+            <li><a asp-controller="Cart" asp-action="Index" class="dropdown-item">Мои товары</a></li>
+            <li>
+                <form asp-area="Identity" asp-page="/Account/Logout"
+                    asp-route-returnurl="@ViewContext.HttpContext.Request.Path">
+                    <input type="submit" value="Log off" class="dropdown-item">
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <ul class="nav navbar-nav ml-auto">
+        <li><a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Login">
+                Войти
+            </a></li>
+        <li><a class="nav-item nav-link" asp-area="Identity" asp-page="/Account/Register">
+                Зарегистрироваться
+            </a></li>
     </ul>
-</div>
+}
