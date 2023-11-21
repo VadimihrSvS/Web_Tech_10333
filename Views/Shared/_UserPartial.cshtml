@@ -1,0 +1,15 @@
+<div class="dropdown ml-4 nav-color">
+    <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item-text">
+            <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
+            user@mail.ru
+        </div>
+        <div class="dropdown-divider"></div>
+        <li><a asp-controller="Cart" asp-action="Index" class="dropdown-item">Мои товары</a></li>
+        <li><a asp-area="Identity" asp-page="/Account/Logout" class="dropdown-item">Log off</a></li>
+    </ul>
+</div>

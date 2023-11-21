@@ -16,31 +16,14 @@
 
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
-                <a href="#" class="navbar-brand">WebLabsV2</a>
+                <a asp-action="Index" asp-controller="Home" class="navbar-brand">WebLabsV3</a>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">Лб2</a>
-                    <a class="nav-item nav-link" asp-controller="Product" asp-action="Index">Каталог</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asp-page="/Index">Администрирование</a>
+                    @await Component.InvokeAsync("Menu")
                 </div>
                 <a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
                     00,0 руб <i class="fas fa-shopping-cart nav-color">(0)</i>
                 </a>
-                <div class="dropdown ml-4 nav-color">
-                    <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item-text">
-                            <img src="images/avatar.jpg" alt="Аватар" width="30" class="rounded" />
-                            user@mail.ru
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <li><a asp-controller="Cart" asp-action="Index" class="dropdown-item">Мои товары</a></li>
-                        <li><a asp-area="Identity" asp-page="/Account/Logout" class="dropdown-item">Log off</a></li>
-                    </ul>
-                </div>
-            </nav>
+                <partial name="_UserPartial" />
         </div>
     </header>
     <main class="container">
