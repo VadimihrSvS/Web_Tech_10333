@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lab_WT_Data.Entities;
+using AspNet_Projects.Models;
 
 namespace AspNet_Projects.Controllers
 {
@@ -12,14 +13,21 @@ namespace AspNet_Projects.Controllers
         List<Dish> _dishes;
         List<DishGroup> _dishGroups;
 
+        int _pageSize;
+
         public ProductController()
         {
+            _pageSize = 3;
             SetupData();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? group, int pageNo = 1)
         {
-            return View(_dishes);
+
+            var dishesFiltered = _dishes.Where(d => !group.HasValue || d.DishGroupId == group.Value);
+            ViewData["Groups"] = _dishGroups;
+            ViewData["CurrentGroup"] = group ?? 0;
+            return View(ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize));
         }
 
         private void SetupData()
