@@ -25,7 +25,7 @@ public class ImageController : Controller
             return File(user.AvatarImage, "image/...");
         else
         {
-            var avatarPath = "/Images/anonymous.png";
+            var avatarPath = "/Images/avatar.png";
 
             return File(_env.WebRootFileProvider
             .GetFileInfo(avatarPath).CreateReadStream(), "image/...");

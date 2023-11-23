@@ -4,7 +4,7 @@ public class MenuViewComponent : ViewComponent
 {
     private List<MenuItem> _menuItems = new List<MenuItem>
         {
-            new MenuItem{Controller="Home", Action="Index",Text="Lab 5"},
+            new MenuItem{Controller="Home", Action="Index",Text="Lab 7"},
             new MenuItem{Controller="Product", Action="Index",Text="Каталог"},
             new MenuItem{IsPage=true, Area="Admin", Page="/Index", Text="Администрирование"}
         };

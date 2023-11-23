@@ -23,7 +23,7 @@ namespace AspNet_Projects.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Text"] = "Лабораторная работа №5";
+            ViewData["Text"] = "Лабораторная работа №7";
             ViewData["SelectList"] = new SelectList(_listDemo, "ListItemValue", "ListItemText");
             return View();
         }

@@ -23,3 +23,7 @@ footer{
 footer:hover{
   transform: translate(0px, 0px);
 }
+
+.pagination {
+  align-items: end;
+}

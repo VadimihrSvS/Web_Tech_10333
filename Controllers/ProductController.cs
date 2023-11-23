@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lab_WT_Data.Entities;
 using AspNet_Projects.Models;
+using AspNet_Projects.Extensions;
+using Microsoft.AspNetCore.Http;
+
 
 namespace AspNet_Projects.Controllers
 {
@@ -20,14 +23,19 @@ namespace AspNet_Projects.Controllers
             _pageSize = 3;
             SetupData();
         }
-
+        [Route("Catalog")]
+        [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
 
             var dishesFiltered = _dishes.Where(d => !group.HasValue || d.DishGroupId == group.Value);
             ViewData["Groups"] = _dishGroups;
             ViewData["CurrentGroup"] = group ?? 0;
-            return View(ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize));
+            var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
+            if (Request.IsAjaxRequest())
+                return PartialView("_listpartial", model);
+            else
+                return View(model);
         }
 
         private void SetupData()

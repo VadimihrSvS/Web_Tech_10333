@@ -1,0 +1,10 @@
+@model ListViewModel<Dish>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    @foreach (var item in Model)
+    {
+        <partial name="_ListItemPartial" model="@item" />
+    }
+
+</div>
+<pager page-current="@Model.CurrentPage" page-total="@Model.TotalPages" action="Index" controller="Product"></pager>

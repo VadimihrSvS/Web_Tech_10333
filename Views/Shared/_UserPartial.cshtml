@@ -7,11 +7,10 @@
     <div class="dropdown ml-4 nav-color">
         <a link="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" id="dropdownMenuButton"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="@Url.Action("GetAvatar","Image")" width="30" alt="User" class="rounded bg-light" />
-        </a>
+            <img img-action="GetAvatar" img-controller="Image" width="30" alt="User" class="rounded bg-light" /> </a>
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-item-text">
-                <img src="@Url.Action("GetAvatar","Image")" width="30" alt="User" class="rounded bg-light" />
+                <img img-action="GetAvatar" img-controller="Image" width="30" alt="User" class="rounded bg-light" />
                 @User.Identity.Name
             </div>
             <div class="dropdown-divider"></div>
