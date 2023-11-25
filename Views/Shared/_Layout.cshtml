@@ -16,13 +16,11 @@
 
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
-                <a asp-action="Index" asp-controller="Home" class="navbar-brand">WebLabsV7</a>
+                <a asp-action="Index" asp-controller="Home" class="navbar-brand">WebLabsV8</a>
                 <div class="navbar-nav">
                     @await Component.InvokeAsync("Menu")
                 </div>
-                <a asp-controller="Cart" asp-action="Index" class="navbar-text ms-auto">
-                    00,0 руб <i class="fas fa-shopping-cart nav-color">(0)</i>
-                </a>
+                @await Component.InvokeAsync("Cart")
                 <partial name="_UserPartial" />
         </div>
     </header>
