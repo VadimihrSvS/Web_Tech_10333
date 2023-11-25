@@ -6,6 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using AspNet_Projects.Models;
 using AspNet_Projects.Services;
+using Serilog;
+using Microsoft.AspNetCore.Builder;
+using AspNet_Projects.Extensions;
+using System.Net;
 
 
 
@@ -37,7 +41,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -54,10 +57,16 @@ builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => CartService.GetCart(sp));
 
-
-
+builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+    .ReadFrom.Configuration(hostingContext.Configuration)
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("Type", "Microsoft")
+    .WriteTo.Console() //вывод в консоль
+    .WriteTo.File("log.txt"));
 
 var app = builder.Build();
+
+app.UseFileLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -86,5 +95,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 await DbInitializer.Seed(app);
+
 
 app.Run();

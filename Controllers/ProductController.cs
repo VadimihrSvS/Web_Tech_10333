@@ -11,13 +11,15 @@ namespace AspNet_Projects.Controllers
     public class ProductController : Controller
     {
         ApplicationDbContext _context;
+        //private ILogger _logger;
 
         int _pageSize;
 
-        public ProductController(ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context/*, ILogger<ProductController> logger*/)
         {
             _pageSize = 3;
             _context = context;
+            //_logger = logger;
         }
         [Route("Catalog")]
         [Route("Catalog/Page_{pageNo}")]
@@ -28,6 +30,7 @@ namespace AspNet_Projects.Controllers
             ViewData["Groups"] = _context.Groups;
             ViewData["CurrentGroup"] = group ?? 0;
             var model = ListViewModel<Dish>.GetModel(dishesFiltered, pageNo, _pageSize);
+            //_logger.LogInformation($"info: group={group}, page={pageNo}");
             if (Request.IsAjaxRequest())
                 return PartialView("_listpartial", model);
             else
